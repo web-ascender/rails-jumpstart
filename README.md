@@ -55,8 +55,9 @@ Below is a summary of what this template does. You can check all the features by
 * `$`, `jQuery`, and `jquery` provided as window globals by default
   * Provide plugin and expose-loader
 * [simple_form](https://github.com/plataformatec/simple_form) rails form helpers (with Bootstrap v4 theme)
-* [devise](https://github.com/plataformatec/devise) for authentication with a default `User` model
-  * first_name and last_name fields
+* [devise](https://github.com/plataformatec/devise) for authentication
+  * generated devise bootstrap-themed views for user login, signup, forgot password, etc
+  * `User` model with additional first_name and last_name attributes
 * [cocoon](https://github.com/nathanvda/cocoon) form helpers for dynamic nested forms
 * [sidekiq](https://sidekiq.org/) for background jobs
   * Web UI mounted at `/admin/sidekiq` by default
