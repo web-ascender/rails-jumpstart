@@ -54,7 +54,7 @@ Below is a summary of what this template does. You can check all the features by
   * including jQuery and Popper.js dependencies
 * `$`, `jQuery`, and `jquery` provided as window globals by default
   * Provide plugin and expose-loader
-* [simple_form](https://github.com/plataformatec/simple_form) rails form helpers
+* [simple_form](https://github.com/plataformatec/simple_form) rails form helpers (with Bootstrap v4 theme)
 * [devise](https://github.com/plataformatec/devise) for authentication with a default `User` model
   * first_name and last_name fields
 * [cocoon](https://github.com/nathanvda/cocoon) form helpers for dynamic nested forms
@@ -89,7 +89,7 @@ Below is a summary of what this template does. You can check all the features by
 
 ## How does it work?
 
-This project works by hooking into the standard Rails application templates system, with some caveats. The entry point is the template.rb file in the root of this repository.
+This project works by hooking into the standard Rails application templates system, with some caveats. The entry point is the `template.rb` file in the root of this repository.
 
 Rails generators are very lightly documented; what you’ll find is that most of the heavy lifting is done by [Thor](https://github.com/erikhuda/thor). The most common methods used by this template are Thor’s `directory`, `copy_file`, `template`, `run`, `insert_into_file`, and `gsub_file`.
 
