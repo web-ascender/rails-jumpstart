@@ -24,7 +24,7 @@ You'll need the following installed to run the template successfully:
 To make this the default Rails application template on your system, create a ~/.railsrc file with these contents:
 
 ```
--d postgresql --skip-coffee --skip-turbolinks -m https://github.com/web-ascender/rails-jumpstart/master/template.rb
+-d postgresql --skip-coffee --skip-turbolinks -m https://raw.githubusercontent.com/web-ascender/rails-jumpstart/master/template.rb
 ```
 
 ## Usage
@@ -32,7 +32,7 @@ To make this the default Rails application template on your system, create a ~/.
 To generate a Rails application using this template, pass the options below to `rails new`, like this:
 
 ```
-$ rails new myapp -d postgresql --skip-coffee --skip-turbolinks -m https://github.com/web-ascender/rails-jumpstart/master/template.rb
+$ rails new myapp -d postgresql --skip-coffee --skip-turbolinks -m https://raw.githubusercontent.com/web-ascender/rails-jumpstart/master/template.rb
 ```
 
 Remember that **options must go after the name of the application** ("myapp" in this case). The only database supported by this template is PostgreSQL.
