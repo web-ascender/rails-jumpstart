@@ -67,7 +67,6 @@ Below is a summary of what this template does. You can check all the features by
 * [whenever](https://github.com/javan/whenever) gem for cron scheduling
 * [jb](https://github.com/amatsuda/jb) gem (jbuilder replacement for simpler and faster JSON views)
 * [name_of_person](https://github.com/basecamp/name_of_person) helper methods for names of people
-* [sassc-rails](https://github.com/sass/sassc-rails) for faster SASS compilation
 
 ### Content / Layout
 

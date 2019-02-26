@@ -6,7 +6,6 @@ ruby '<%= RUBY_VERSION %>'
 gem 'pg'<%= default_gemfile_gem_version('pg') %>
 gem 'puma'<%= default_gemfile_gem_version('puma') %>
 gem 'rails', '~> <%= Rails.version %>'
-gem 'sassc-rails', '~> 2.1'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'uglifier'<%= default_gemfile_gem_version('uglifier') %>
 gem 'webpacker', '~> 3.5'
