@@ -234,10 +234,12 @@ def setup_select2
 end
 
 def setup_fontawesome
+  puts "** TEMPLATE ** #{__method__}"
   run 'yarn add @fortawesome/fontawesome-pro'
 end
 
 def setup_datepicker
+  puts "** TEMPLATE ** #{__method__}"
   insert_into_file 'app/helpers/application_helper.rb', before: /^end/ do
     <<-RUBY
   def date_input(form, field)
