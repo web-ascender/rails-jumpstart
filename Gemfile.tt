@@ -6,24 +6,24 @@ ruby '<%= RUBY_VERSION %>'
 gem 'pg'<%= default_gemfile_gem_version('pg') %>
 gem 'puma'<%= default_gemfile_gem_version('puma') %>
 gem 'rails', '~> <%= Rails.version %>'
-gem 'sassc-rails'
+gem 'sassc-rails', '~> 2.1'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'uglifier'<%= default_gemfile_gem_version('uglifier') %>
-gem 'webpacker'
+gem 'webpacker', '~> 3.5'
 gem 'haml-rails', '~> 2.0', git: 'https://github.com/web-ascender/haml-rails', branch: 'master'
 
-gem 'active_link_to'
-gem 'cocoon'
+gem 'active_link_to', '~> 1.0'
+gem 'cocoon', '~> 1.2'
 gem 'country_select'
-gem 'devise'
-gem 'devise-i18n'
+gem 'devise', '~> 4.6'
+gem 'devise-i18n', '~> 1.8'
 gem 'devise-bootstrap-views', '~> 1.0'
-gem 'jb'
-gem 'local_time'
-gem 'name_of_person'
-gem 'sidekiq', '~> 4.0'
-gem 'simple_form'
-gem 'whenever', require: false
+gem 'jb', '~> 0.6'
+gem 'local_time', '~> 2.1'
+gem 'name_of_person', '~> 1.1'
+gem 'sidekiq', '~> 4.2'
+gem 'simple_form', '~> 4.1'
+gem 'whenever', '~> 0.10', require: false
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -34,16 +34,16 @@ gem 'whenever', require: false
 # gem 'mini_magick', '~> 4.8'
 
 group :development, :test do
-  gem 'dotenv-rails'
+  gem 'dotenv-rails', '~> 2.7'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
 group :development do
-  gem 'annotate'
+  gem 'annotate', '~> 2.7'
   gem 'awesome_print'
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'bullet'
+  gem 'better_errors', '~> 2.5'
+  gem 'binding_of_caller', '~> 0.8'
+  gem 'bullet', '~> 5.9'
   gem 'listen'<%= default_gemfile_gem_version('listen') %>
   gem 'meta_request' # support for 'RailsPanel' chrome extension
   gem 'spring'
