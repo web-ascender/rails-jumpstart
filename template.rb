@@ -13,18 +13,18 @@ RAILS_REQUIREMENT = ">= 5.2.2".freeze
 # In that case, use `git clone` to download them to a local temporary dir.
 def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
-  #   require "tmpdir"
-  #   source_paths.unshift(tempdir = Dir.mktmpdir("jumpstart-"))
-  #   at_exit { FileUtils.remove_entry(tempdir) }
-  #   git clone: [
-  #     "--quiet",
-  #     "https://github.com/excid3/jumpstart.git",
-  #     tempdir
-  #   ].map(&:shellescape).join(" ")
+    require "tmpdir"
+    source_paths.unshift(tempdir = Dir.mktmpdir("jumpstart-"))
+    at_exit { FileUtils.remove_entry(tempdir) }
+    git clone: [
+      "--quiet",
+      "https://github.com/web-ascender/rails-jumpstart.git",
+      tempdir
+    ].map(&:shellescape).join(" ")
 
-  #   if (branch = __FILE__[%r{jumpstart/(.+)/template.rb}, 1])
-  #     Dir.chdir(tempdir) { git checkout: branch }
-  #   end
+    if (branch = __FILE__[%r{jumpstart/(.+)/template.rb}, 1])
+      Dir.chdir(tempdir) { git checkout: branch }
+    end
   else
     source_paths.unshift(File.dirname(__FILE__))
   end
