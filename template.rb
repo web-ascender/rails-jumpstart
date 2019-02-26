@@ -15,7 +15,8 @@ def add_template_repository_to_source_path
   if __FILE__ =~ %r{\Ahttps?://}
     require "tmpdir"
     source_paths.unshift(tempdir = Dir.mktmpdir("rails-jumpstart-"))
-    at_exit { FileUtils.remove_entry(tempdir) }
+    puts "source_paths = #{source_paths.inspect}"
+    # at_exit { FileUtils.remove_entry(tempdir) }
     git clone: [
       "--quiet",
       "https://github.com/web-ascender/rails-jumpstart.git",
