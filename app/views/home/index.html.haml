@@ -24,6 +24,22 @@
         = country_select("user","")
   .col
     .card
+      .card-header jQuery UI Date Picker
+      .card-body
+        Simple
+        %code text
+        input with
+        %code class="datepicker"
+        = text_field_tag "label", nil, class: "datepicker"
+        %hr
+        %p
+          Our custom
+          %code date_input
+          SimpleForm helper
+          = simple_form_for(User.new, url: user_update_profile_path) do |f|
+            = date_input(f, :created_at)
+  .col
+    .card
       .card-header Simple Form
       .card-body
         %code simple_form
