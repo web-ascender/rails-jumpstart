@@ -17,9 +17,7 @@ You'll need the following installed to run the template successfully:
 * **Yarn** (`brew install yarn` or [Install Yarn](https://yarnpkg.com/en/docs/install))
 * **PostgreSQL** (`Postgres.app` recommended on OSX https://postgresapp.com)
 
-## Installation
-
-*Optional*
+## Installation (optional)
 
 To make this the default Rails application template on your system, create a `~/.railsrc` file with these contents:
 
