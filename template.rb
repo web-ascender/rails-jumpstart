@@ -364,7 +364,7 @@ def apply_template!
     # git commit: %Q{ -m 'Initial commit' }
 
     puts "\n#{'*'*100}"
-    puts "  TEMPLATED COMPLETED !\n"
+    puts "\n  TEMPLATED COMPLETED !\n\n"
     puts "  start your app with foreman:"
     puts "  $ foreman start"
     puts "*"*100
