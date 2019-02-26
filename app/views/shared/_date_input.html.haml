@@ -1,0 +1,7 @@
+.form-group
+  = f.label field
+  .input-group
+    = f.input_field field, as: :string, value: (l(f.object.send(field)) if f.object.send(field).present?), class: 'form-control datepicker', autocomplete: 'off'
+    .input-group-append
+      .input-group-text
+        %i.far.fa-calendar-alt

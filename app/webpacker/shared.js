@@ -6,7 +6,7 @@ import './flash-alerts-animation'
 import LocalTime from "local-time"
 import './cocoon.js.erb'
 import initSelect2 from './init-select2'
-// import './datepicker'
+import './datepicker'
 // import './file_input'
 // import './ckeditor'
 // import './activefields.js.erb'

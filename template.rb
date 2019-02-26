@@ -233,6 +233,20 @@ def setup_select2
   run 'yarn add select2 @ttskch/select2-bootstrap4-theme'
 end
 
+def setup_fontawesome
+  run 'yarn add @fortawesome/fontawesome-pro'
+end
+
+def setup_datepicker
+  insert_into_file 'app/helpers/application_helper.rb', after: 'module ApplicationHelper\n' do
+    <<-RUBY
+  def date_input(form, field)
+    render partial: 'shared/date_input', locals: { f: form, field: field }
+  end
+    RUBY
+  end
+end
+
 def setup_sidekiq
   puts "** TEMPLATE ** #{__method__}"
   insert_into_file 'config/routes.rb', after: "Rails.application.routes.draw do\n" do
@@ -345,6 +359,8 @@ def apply_template!
     setup_local_time
     setup_cocoon
     setup_select2
+    # setup_fontawesome
+    setup_datepicker
     setup_sidekiq
     setup_annotate
     setup_whenever
@@ -366,7 +382,7 @@ def apply_template!
     puts "\n#{'*'*100}"
     puts "\n  TEMPLATED COMPLETED !\n\n"
     puts "  start your app with foreman:"
-    puts "  $ foreman start"
+    puts "  $ foreman start\n"
     puts "*"*100
   end
 end
