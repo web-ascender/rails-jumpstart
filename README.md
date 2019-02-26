@@ -43,7 +43,7 @@ $ rails new myapp
 
 ## What is included?
 
-Below is an extract of what this template does. You can check all the features by following the code in `template.rb`
+Below is a summary of what this template does. You can check all the features by following the code in `template.rb`
 
 * `webpack` ([webpacker](https://github.com/rails/webpacker)) to serve all JS and CSS
   * renames the default `app/javascript` folder to `app/webpacker`
