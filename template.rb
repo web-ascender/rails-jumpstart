@@ -238,7 +238,7 @@ def setup_fontawesome
 end
 
 def setup_datepicker
-  insert_into_file 'app/helpers/application_helper.rb', after: 'module ApplicationHelper\n' do
+  insert_into_file 'app/helpers/application_helper.rb', before: /^end/ do
     <<-RUBY
   def date_input(form, field)
     render partial: 'shared/date_input', locals: { f: form, field: field }
