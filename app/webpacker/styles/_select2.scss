@@ -1,0 +1,11 @@
+@import 'node_modules/select2/src/scss/core.scss';
+@import 'node_modules/@ttskch/select2-bootstrap4-theme/src/layout.scss';
+
+.select2-container--disabled .select2-selection {
+  color: #6c757d;
+  background-color: #e9ecef;
+}
+.select2-selection {
+  color: #495057;
+  background-color: #fff;
+}

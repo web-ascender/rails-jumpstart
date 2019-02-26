@@ -1,0 +1,4 @@
+rails: env PORT=3000 bin/rails server
+webpacker: bin/webpack-dev-server
+redis: redis-server
+sidekiq: bin/sidekiq -e development

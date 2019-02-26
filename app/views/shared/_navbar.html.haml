@@ -1,0 +1,27 @@
+%nav.navbar.navbar-expand-md.navbar-light.bg-light
+  .container-fluid
+    = link_to 'APP', root_path, class: 'navbar-brand'
+    %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
+      %span.navbar-toggler-icon
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.navbar-nav.mr-auto
+        %li.nav-item= active_link_to 'Terms', terms_path, class: 'nav-link'
+        %li.nav-item= active_link_to 'Privacy', privacy_path, class: 'nav-link'
+        %li.nav-item= active_link_to 'Something Else', '/foo', class: 'nav-link'
+      %ul.navbar-nav
+        - if user_signed_in? && current_user.superuser?
+          %li.nav-item.dropdown
+            = link_to 'Admin', '#', class: "nav-link dropdown-toggle", id: 'admin-dropdown', role: :button, 'data-toggle': :dropdown, 'aria-haspopup': true, 'aria-expanded': false
+            .dropdown-menu.dropdown-menu-right{ 'aria-labelledby': 'admin-dropdown' }
+              = link_to 'Item One', '#', class: 'dropdown-item'
+              = link_to 'Item Two', '#', class: 'dropdown-item'
+              = link_to 'Item Three', '#', class: 'dropdown-item'
+        - if user_signed_in?
+          %li.nav-item.dropdown
+            = link_to current_user.email, '#', class: "nav-link dropdown-toggle", id: 'current-user-dropdown', role: :button, 'data-toggle': :dropdown, 'aria-haspopup': true, 'aria-expanded': false
+            .dropdown-menu.dropdown-menu-right{ 'aria-labelledby': 'current-user-dropdown' }
+              = active_link_to 'My Account', edit_user_registration_path, class: 'dropdown-item'
+              = active_link_to 'My Profile', user_profile_path, class: 'dropdown-item'
+              = link_to 'Logout', destroy_user_session_path, class: 'dropdown-item', method: :delete
+        - else
+          %li.nav-item= active_link_to 'Login', new_user_session_path, class: 'nav-link'

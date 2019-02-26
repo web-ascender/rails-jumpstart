@@ -1,0 +1,6 @@
+any_hash = {
+  foo: 'bar',
+  now_date: Time.now.strftime('%F')
+}
+
+any_hash

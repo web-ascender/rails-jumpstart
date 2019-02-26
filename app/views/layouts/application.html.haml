@@ -1,0 +1,42 @@
+!!!
+%html{ lang: 'en' }
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}
+    %meta{content: "width=device-width, initial-scale=1, shrink-to-fit=no", name: "viewport"}
+    %title
+      = yield(:title) + ' | ' if content_for?(:title)
+      = Rails.configuration.application_name
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_pack_tag 'application'
+    = javascript_pack_tag 'application'
+
+  %body
+    = render partial: 'shared/navbar'
+
+    - if content_for?(:subnav)
+      %nav.subnav.navbar.navbar-expand-md.navbar-dark.bg-dark
+        .container-fluid= yield :subnav
+
+    .container-fluid.mt-3.mb-5
+      = yield
+
+    - if flash[:alert]
+      .invisible
+        .container.p-3.text-center= flash[:alert]
+      .app-flash-alert.fixed-bottom.bg-danger.text-white
+        .container.p-3.text-center= flash[:alert]
+    - if flash[:notice]
+      .invisible
+        .container.p-3.text-center= flash[:notice]
+      .app-flash-alert.fixed-bottom.bg-success.text-white
+        .container.p-3.text-center= flash[:notice]
+
+    %footer.footer.text-muted.bg-light
+      .container-fluid
+        %span
+          © #{Date.today.year} Your Company
+        %ul.list-inline.mb-0.float-right
+          %li.list-inline-item.mr-3= active_link_to "Terms", terms_path
+          %li.list-inline-item.mr-3= active_link_to "Privacy", privacy_path

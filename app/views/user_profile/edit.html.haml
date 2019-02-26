@@ -1,0 +1,6 @@
+%h1 My Profile
+= simple_form_for(@user, url: user_update_profile_path) do |f|
+  = f.input :email
+  = f.input :first_name
+  = f.input :last_name
+  = f.submit 'Update', class: 'btn btn-primary'

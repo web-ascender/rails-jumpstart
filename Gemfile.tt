@@ -1,0 +1,60 @@
+source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+
+ruby '<%= RUBY_VERSION %>'
+
+gem 'pg'<%= default_gemfile_gem_version('pg') %>
+gem 'puma'<%= default_gemfile_gem_version('puma') %>
+gem 'rails', '~> <%= Rails.version %>'
+gem 'sassc-rails'
+gem 'bootsnap', '>= 1.1.0', require: false
+gem 'uglifier'<%= default_gemfile_gem_version('uglifier') %>
+gem 'webpacker'
+gem 'haml-rails', '~> 2.0', git: 'https://github.com/web-ascender/haml-rails', branch: 'master'
+
+gem 'active_link_to'
+gem 'cocoon'
+gem 'country_select'
+gem 'devise'
+gem 'devise-i18n'
+gem 'devise-bootstrap-views', '~> 1.0'
+gem 'jb'
+gem 'local_time'
+gem 'name_of_person'
+gem 'sidekiq', '~> 4.0'
+gem 'simple_form'
+gem 'whenever', require: false
+
+# Use Redis adapter to run Action Cable in production
+# gem 'redis', '~> 4.0'
+# Use ActiveModel has_secure_password
+# gem 'bcrypt', '~> 3.1.7'
+
+# Use ActiveStorage variant
+# gem 'mini_magick', '~> 4.8'
+
+group :development, :test do
+  gem 'dotenv-rails'
+  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+end
+
+group :development do
+  gem 'annotate'
+  gem 'awesome_print'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'bullet'
+  gem 'listen'<%= default_gemfile_gem_version('listen') %>
+  gem 'meta_request' # support for 'RailsPanel' chrome extension
+  gem 'spring'
+  gem 'spring-watcher-listen'<%= default_gemfile_gem_version('spring-watcher-listen') %>
+  gem 'web-console'<%= default_gemfile_gem_version('web-console') %>
+end
+
+group :test do
+  # Adds support for Capybara system testing and selenium driver
+  gem 'capybara', '>= 2.15'
+  gem 'selenium-webdriver'
+  # Easy installation and use of chromedriver to run system tests with Chrome
+  gem 'chromedriver-helper'
+end
