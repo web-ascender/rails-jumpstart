@@ -238,7 +238,7 @@ def setup_fontawesome
 
   puts "checking for FontAwesome Pro config (npm config ls)..."
   npm_config_data = run "npm config ls", capture: true
-  pro_available if npm_config_data.include?('@fortawesome:registry')
+  pro_available = npm_config_data.include?('@fortawesome:registry')
   if pro_available
     puts "found PRO in your npm config!"
     run 'yarn add @fortawesome/fontawesome-pro'
