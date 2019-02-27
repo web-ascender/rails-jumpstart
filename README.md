@@ -71,12 +71,12 @@ Below is a summary of what this template does. You can check all the features by
   * auto-detects if you have the **PRO** npm auth key configured, fallback to FontAwesome **Free** icons if PRO not detected
 * [sidekiq](https://sidekiq.org/) for background jobs
   * Web UI mounted at `/admin/sidekiq` by default
-* [whenever](https://github.com/javan/whenever) gem for cron scheduling
-* [jb](https://github.com/amatsuda/jb) gem (jbuilder replacement for simpler and faster JSON views)
+* [whenever](https://github.com/javan/whenever) for cron scheduling
+* [jb](https://github.com/amatsuda/jb) (jbuilder replacement for simpler and faster JSON views)
 
 ### Helpers
 
-* [simple_form](https://github.com/plataformatec/simple_form) rails form helpers (with Bootstrap v4 theme)
+* [simple_form](https://github.com/plataformatec/simple_form) form helpers (with Bootstrap v4 theme)
 * [cocoon](https://github.com/nathanvda/cocoon) form helpers for dynamic nested forms
 * [local_time](https://github.com/basecamp/local_time) for easy formatting of user-facing timestamps
 * [active_link_to](https://github.com/comfy/active_link_to) link helpers
@@ -101,8 +101,8 @@ Below is a summary of what this template does. You can check all the features by
 ### Development
 
 * [dotenv-rails](https://github.com/bkeepers/dotenv) for loading ENV vars in development
-* [annotate](https://github.com/ctran/annotate_models) gem for model/route documentation
-* [bullet](https://github.com/flyerhzm/bullet) gem for N+1 detection
+* [annotate](https://github.com/ctran/annotate_models) for model/route documentation
+* [bullet](https://github.com/flyerhzm/bullet) for N+1 detection
 * [better_errors](https://github.com/BetterErrors/better_errors) for nicer error pages in development
 * [awesome_print](https://github.com/awesome-print/awesome_print) for nicer console output in development
 * [meta_request](https://github.com/dejan/rails_panel) support for [RailsPanel](https://chrome.google.com/webstore/detail/railspanel/gjpfobpafnhjhbajcjgccbbdofdckggg) chrome extension
