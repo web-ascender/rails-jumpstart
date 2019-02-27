@@ -17,6 +17,15 @@ You'll need the following installed to run the template successfully:
 * **Yarn** (`brew install yarn` or [Install Yarn](https://yarnpkg.com/en/docs/install))
 * **PostgreSQL** (`Postgres.app` recommended on OSX https://postgresapp.com)
 
+### Recommended
+
+These are optional and nice to have, but the template will work without them:
+
+* [foreman](https://github.com/ddollar/foreman) (`gem install foreman`)
+  * **DO NOT ADD TO GEMFILE**
+* [terminal-notifier](https://github.com/julienXX/terminal-notifier) (`gem install terminal-notifier`)
+  * **DO NOT ADD TO GEMFILE**
+
 ## Installation (optional)
 
 To make this the default Rails application template on your system, create a `~/.railsrc` file with these contents:
@@ -57,21 +66,29 @@ Below is a summary of what this template does. You can check all the features by
 * [devise](https://github.com/plataformatec/devise) for authentication
   * generated devise bootstrap-themed views for user login, signup, forgot password, etc
   * `User` model with additional first_name and last_name attributes
-* [simple_form](https://github.com/plataformatec/simple_form) rails form helpers (with Bootstrap v4 theme)
 * [Font Awesome 5](https://fontawesome.com/) SVG icons
   * **Required one-time setup for PRO:** https://fontawesome.com/how-to-use/on-the-web/setup/using-package-managers#installing-pro
   * auto-detects if you have the **PRO** npm auth key configured, fallback to FontAwesome **Free** icons if PRO not detected
-* [jQuery UI DatePicker](https://jqueryui.com/datepicker/) configured out-of-the-box
-  * also a custom `date_input` simple_form input helper
-* [cocoon](https://github.com/nathanvda/cocoon) form helpers for dynamic nested forms
 * [sidekiq](https://sidekiq.org/) for background jobs
   * Web UI mounted at `/admin/sidekiq` by default
-* [local_time](https://github.com/basecamp/local_time) for easy formatting of user-facing timestamps
-* [select2](https://select2.org/) dropdown library (with Bootstrap v4 theme)
-* [active_link_to](https://github.com/comfy/active_link_to) link helpers
 * [whenever](https://github.com/javan/whenever) gem for cron scheduling
 * [jb](https://github.com/amatsuda/jb) gem (jbuilder replacement for simpler and faster JSON views)
+
+### Helpers
+
+* [simple_form](https://github.com/plataformatec/simple_form) rails form helpers (with Bootstrap v4 theme)
+* [cocoon](https://github.com/nathanvda/cocoon) form helpers for dynamic nested forms
+* [local_time](https://github.com/basecamp/local_time) for easy formatting of user-facing timestamps
+* [active_link_to](https://github.com/comfy/active_link_to) link helpers
 * [name_of_person](https://github.com/basecamp/name_of_person) helper methods for names of people
+
+### JavaScript Libraries
+
+* jQuery, jQuery UI
+* [jQuery UI DatePicker](https://jqueryui.com/datepicker/) configured out-of-the-box
+  * also a custom `date_input` simple_form input helper
+* [select2](https://select2.org/) dropdown library (with Bootstrap v4 theme)
+* [axios](https://www.npmjs.com/package/axios) Promise based HTTP client for AJAX requests
 
 ### Content / Layout
 

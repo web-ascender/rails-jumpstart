@@ -10,8 +10,8 @@ import './datepicker'
 // import './file_input'
 // import './ckeditor'
 // import './activefields.js.erb'
+import axios from 'axios'
 
-// import axios from 'axios'
-
+axios.defaults.headers.common['Accept'] = 'application/json';
 LocalTime.start()
 initSelect2()

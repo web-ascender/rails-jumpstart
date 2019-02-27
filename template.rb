@@ -183,6 +183,10 @@ end
 #   insert_into_file 'app/models/user.rb', "  has_person_name\n", after: "class User < ApplicationRecord\n"
 # end
 
+def setup_axios
+  run 'yarn add axios'
+end
+
 def setup_simple_form
   puts "\n**** TEMPLATE -> #{__method__}\n"
   generate "simple_form:install --bootstrap"
@@ -351,6 +355,7 @@ def apply_template!
     setup_devise_with_user_models
     # setup_name_of_person
     setup_simple_form
+    setup_axios
     setup_local_time
     setup_cocoon
     setup_select2
@@ -379,6 +384,10 @@ def apply_template!
     puts "  start your app with foreman:"
     puts "  $ foreman start\n\n"
     puts "*"*80
+    terminal_notifier_installed = run "gem list -i '^terminal-notifier$'", capture: true
+    if terminal_notifier_installed.strip == 'true'
+      run "terminal-notifier -title 'WA Rails Jumpstart' -subtitle 'Template Completed ✅' -message 'run it with foreman start' -sound 'default'"
+    end
   end
 end
 
