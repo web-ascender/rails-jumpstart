@@ -28,7 +28,7 @@ These are optional and nice to have, but the template will work without them:
 
 ## Installation (optional)
 
-To make this the default Rails application template on your system, create a `~/.railsrc` file with these contents:
+To make this the **default** Rails application template on your system, create a `~/.railsrc` file with these contents:
 
 ```
 -d postgresql --skip-coffee --skip-turbolinks -m https://raw.githubusercontent.com/web-ascender/rails-jumpstart/master/template.rb
