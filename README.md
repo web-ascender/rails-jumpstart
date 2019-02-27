@@ -59,7 +59,7 @@ Below is a summary of what this template does. You can check all the features by
   * `User` model with additional first_name and last_name attributes
 * [simple_form](https://github.com/plataformatec/simple_form) rails form helpers (with Bootstrap v4 theme)
 * [Font Awesome 5](https://fontawesome.com/) SVG icons
-  * one-time setup for PRO here: https://fontawesome.com/how-to-use/on-the-web/setup/using-package-managers#installing-pro
+  * **Required one-time setup for PRO:** https://fontawesome.com/how-to-use/on-the-web/setup/using-package-managers#installing-pro
   * auto-detects if you have the **PRO** npm auth key configured, fallback to FontAwesome **Free** icons if PRO not detected
 * [jQuery UI DatePicker](https://jqueryui.com/datepicker/) configured out-of-the-box
   * also a custom `date_input` simple_form input helper
