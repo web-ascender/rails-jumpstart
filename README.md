@@ -72,7 +72,8 @@ Below is a summary of what this template does. You can check all the features by
 * [sidekiq](https://sidekiq.org/) for background jobs
   * Web UI mounted at `/admin/sidekiq` by default
 * [whenever](https://github.com/javan/whenever) for cron scheduling
-* [jb](https://github.com/amatsuda/jb) (jbuilder replacement for simpler and faster JSON views)
+* [jb](https://github.com/amatsuda/jb) simple and fast JSON views (jbuilder replacement)
+* [httprb](https://github.com/httprb/http) a fast Ruby HTTP client with a chainable API, streaming support, and more
 
 ### Helpers
 
