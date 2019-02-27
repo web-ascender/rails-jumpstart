@@ -121,3 +121,7 @@ Rails generators are very lightly documented; what you’ll find is that most of
 * https://github.com/damienlethiec/modern-rails-template
 * https://github.com/mattbrictson/rails-template
 * https://github.com/shioyama/rails-template
+
+## Authors
+
+* [Kevin Southworth](https://github.com/ksouthworth)
