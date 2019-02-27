@@ -1,17 +1,14 @@
-# rails new temp1 -d postgresql --skip-coffee --skip-turbolinks
-# rails new temp1 -d postgresql --skip-coffee --skip-turbolinks --webpack -m kevin-template.rb
-
 require "fileutils"
 require "shellwords"
 
 RAILS_REQUIREMENT = ">= 5.2.2".freeze
 
-# Copied from: https://github.com/mattbrictson/rails-template
-# Add this template directory to source_paths so that Thor actions like
-# copy_file and template resolve against our source files. If this file was
-# invoked remotely via HTTP, that means the files are not present locally.
-# In that case, use `git clone` to download them to a local temporary dir.
 def add_template_repository_to_source_path
+  # Copied from: https://github.com/mattbrictson/rails-template
+  # Add this template directory to source_paths so that Thor actions like
+  # copy_file and template resolve against our source files. If this file was
+  # invoked remotely via HTTP, that means the files are not present locally.
+  # In that case, use `git clone` to download them to a local temporary dir.
   if __FILE__ =~ %r{\Ahttps?://}
     require "tmpdir"
     source_paths.unshift(tempdir = Dir.mktmpdir("rails-jumpstart-"))
@@ -38,7 +35,7 @@ def default_gemfile_gem_version(name)
 end
 
 def assert_minimum_rails_version
-  puts "** TEMPLATE ** #{__method__}"
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   requirement = Gem::Requirement.new(RAILS_REQUIREMENT)
   rails_version = Gem::Version.new(Rails::VERSION::STRING)
   return if requirement.satisfied_by?(rails_version)
@@ -49,7 +46,7 @@ def assert_minimum_rails_version
 end
 
 def assert_postgresql
-  puts "** TEMPLATE ** #{__method__}"
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   return if IO.read("Gemfile") =~ /^\s*gem ['"]pg['"]/
   fail Rails::Generators::Error,
        "This template requires PostgreSQL, "\
@@ -57,7 +54,7 @@ def assert_postgresql
 end
 
 def set_application_name
-  puts "** TEMPLATE ** #{__method__}"
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   # Add Application Name to Config
   environment "config.application_name = Rails.application.class.parent_name"
 
@@ -65,12 +62,8 @@ def set_application_name
   puts "You can change application name inside: ./config/application.rb"
 end
 
-# def stop_spring
-#   run "spring stop"
-# end
-
 def setup_webpack
-  puts "** TEMPLATE ** #{__method__}"
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   # rename app/javascript to app/webpacker
   inside "app" do
     run 'mv javascript webpacker'
@@ -84,7 +77,7 @@ def setup_webpack
 end
 
 def copy_app_templates
-  puts "** TEMPLATE ** #{__method__}"
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   # https://github.com/excid3/jumpstart/blob/master/template.rb
   directory "app/views", force: true
   directory "app/controllers", force: true
@@ -101,7 +94,7 @@ def copy_app_templates
 end
 
 def setup_bootstrap
-  puts "** TEMPLATE ** #{__method__}"
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   # Bootstrap v4 requires jQuery and the Popper.js lib
   # jquery-ujs   Rails jQuery helpers
   # jquery-ui    Useful for date pickers
@@ -132,7 +125,7 @@ environment.plugins.append(
 end
 
 def setup_expose_loader
-  puts "** TEMPLATE ** #{__method__}"
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   run 'yarn add expose-loader'
   # expose-loader adds libraries to the window object (global scope)
   # this is useful for things like jQuery because many 3rd-party libs expect it as a global
@@ -154,7 +147,7 @@ environment.loaders.append("expose", {
 end
 
 def setup_devise_with_user_models
-  puts "** TEMPLATE ** #{__method__}"
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   # Install Devise
   generate "devise:install"
 
@@ -179,25 +172,20 @@ def setup_devise_with_user_models
     gsub_file migration, /:superuser/, ":superuser, default: false"
   end
 
-  # insert_into_file 'app/models/user.rb', "\n  validates :first_name, :last_name, presence: true\n", before: /^end/
-
   # Generate Devise Bootstrap Views
   # https://github.com/hisea/devise-bootstrap-views
-  run 'spring stop'
   generate "devise:views:bootstrap_templates"
 end
 
 # def setup_name_of_person
-#   puts "** TEMPLATE ** #{__method__}"
+#   puts "\n**** TEMPLATE -> #{__method__}\n"
 #   # https://github.com/basecamp/name_of_person
 #   insert_into_file 'app/models/user.rb', "  has_person_name\n", after: "class User < ApplicationRecord\n"
 # end
 
 def setup_simple_form
-  puts "** TEMPLATE ** #{__method__}"
-  run 'spring stop'
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   generate "simple_form:install --bootstrap"
-
   # tweak the generate simple_form_bootstrap.rb config
   # remove the individual field-level 'is-valid' CSS classes, to de-clutter
   gsub_file "config/initializers/simple_form_bootstrap.rb", /config.input_field_valid_class = 'is-valid'/, "config.input_field_valid_class = ''"
@@ -205,13 +193,12 @@ def setup_simple_form
 end
 
 def setup_local_time
-  puts "** TEMPLATE ** #{__method__}"
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   run 'yarn add local-time'
 end
 
 def setup_cocoon
-  puts "** TEMPLATE ** #{__method__}"
-
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   # Cocoon is stubborn, it requires jQuery AND the asset pipeline
   # so we have to do some gymnastics here with webpacker to load it
   # via an ERB JS loader so that the asset paths are pulled in correctly
@@ -227,15 +214,13 @@ environment.loaders.append('erb', erb)
 end
 
 def setup_select2
-  puts "** TEMPLATE ** #{__method__}"
-
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   # select2 and a Bootstrap v4 theme
   run 'yarn add select2 @ttskch/select2-bootstrap4-theme'
 end
 
 def setup_fontawesome
-  puts "** TEMPLATE ** #{__method__}"
-
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   puts "checking for FontAwesome Pro config (npm config ls)..."
   npm_config_data = run "npm config ls", capture: true
   pro_available = npm_config_data.include?('@fortawesome:registry')
@@ -250,7 +235,7 @@ def setup_fontawesome
 end
 
 def setup_datepicker
-  puts "** TEMPLATE ** #{__method__}"
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   insert_into_file 'app/helpers/application_helper.rb', before: /^end/ do
     <<-RUBY
   def date_input(form, field)
@@ -261,7 +246,7 @@ def setup_datepicker
 end
 
 def setup_sidekiq
-  puts "** TEMPLATE ** #{__method__}"
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   insert_into_file 'config/routes.rb', after: "Rails.application.routes.draw do\n" do
     <<-RUBY
 
@@ -274,8 +259,7 @@ def setup_sidekiq
 end
 
 def setup_annotate
-  puts "** TEMPLATE ** #{__method__}"
-  run 'spring stop'
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   generate 'annotate:install'
 
   # adjust annotate config
@@ -287,12 +271,12 @@ def setup_annotate
 end
 
 def setup_whenever
-  puts "** TEMPLATE ** #{__method__}"
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   run "wheneverize ."
 end
 
 def setup_bullet
-  puts "** TEMPLATE ** #{__method__}"
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   insert_into_file 'config/environments/development.rb', before: /^end/ do
     <<-RUBY
 
@@ -307,7 +291,7 @@ def setup_bullet
 end
 
 def setup_routes
-  puts "** TEMPLATE ** #{__method__}"
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   route "root to: 'home#index'"
 
   insert_into_file 'config/routes.rb', after: "devise_for :users" do
@@ -326,7 +310,7 @@ def setup_routes
 end
 
 def setup_procfile
-  puts "** TEMPLATE ** #{__method__}"
+  puts "\n**** TEMPLATE -> #{__method__}\n"
   template "foreman.tt", ".foreman"
   template "Procfile.dev.tt"
 end
@@ -353,7 +337,6 @@ def apply_template!
   assert_postgresql
   add_template_repository_to_source_path
 
-  puts "** TEMPLATE ** copy [ Gemfile, ruby-version ]"
   template "Gemfile.tt", force: true
   template "ruby-version.tt", ".ruby-version", force: true
 
@@ -362,7 +345,6 @@ def apply_template!
 
   after_bundle do
     set_application_name
-    run "spring stop"
     setup_webpack
     copy_app_templates
     setup_bootstrap
@@ -392,13 +374,15 @@ def apply_template!
     # git add: "."
     # git commit: %Q{ -m 'Initial commit' }
 
-    puts "\n#{'*'*100}"
-    puts "\n  TEMPLATED COMPLETED !\n\n"
+    puts "\n#{'*'*80}"
+    puts "\n  TEMPLATE FINISHED !\n\n"
     puts "  start your app with foreman:"
-    puts "  $ foreman start\n"
-    puts "*"*100
+    puts "  $ foreman start\n\n"
+    puts "*"*80
   end
 end
 
+# kill any spring instances, they don't play well with templates
 run 'pgrep spring | xargs kill -9'
+
 apply_template!
