@@ -235,7 +235,18 @@ end
 
 def setup_fontawesome
   puts "** TEMPLATE ** #{__method__}"
-  run 'yarn add @fortawesome/fontawesome-pro'
+
+  puts "checking for FontAwesome Pro config (npm config ls)..."
+  npm_config_data = run "npm config ls", capture: true
+  pro_available if npm_config_data.include?('@fortawesome:registry')
+  if pro_available
+    puts "found PRO in your npm config!"
+    run 'yarn add @fortawesome/fontawesome-pro'
+  else
+    puts "could not detect PRO, falling back to FontAwesome FREE"
+    puts "read more here:\n https://fontawesome.com/how-to-use/on-the-web/setup/using-package-managers"
+    run 'yarn add @fortawesome/fontawesome-free'
+  end
 end
 
 def setup_datepicker
@@ -361,7 +372,7 @@ def apply_template!
     setup_local_time
     setup_cocoon
     setup_select2
-    # setup_fontawesome
+    setup_fontawesome
     setup_datepicker
     setup_sidekiq
     setup_annotate
