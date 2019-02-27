@@ -386,7 +386,7 @@ def apply_template!
     puts "*"*80
     terminal_notifier_installed = run "gem list -i '^terminal-notifier$'", capture: true
     if terminal_notifier_installed.strip == 'true'
-      run "terminal-notifier -title 'WA Rails Jumpstart' -subtitle 'Template Completed ✅' -message 'run it with foreman start' -sound 'default'"
+      run "terminal-notifier -title 'WA Rails Jumpstart' -subtitle 'APP READY ✅' -message 'run it with foreman start' -sound 'default'"
     end
   end
 end
