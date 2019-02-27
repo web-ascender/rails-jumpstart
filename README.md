@@ -52,7 +52,7 @@ Below is a summary of what this template does. You can check all the features by
 * [haml](https://github.com/indirect/haml-rails) for view templates
 * [boostrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/) (v4) UI framework
   * including jQuery and Popper.js dependencies
-* `$`, `jQuery`, and `jquery` provided as window globals by default
+* `$`, `jQuery`, and `jquery` provided as window globals by default (for 3rd party compatibility)
   * Provide plugin and expose-loader
 * [devise](https://github.com/plataformatec/devise) for authentication
   * generated devise bootstrap-themed views for user login, signup, forgot password, etc
