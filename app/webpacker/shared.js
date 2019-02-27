@@ -1,6 +1,6 @@
 // import 'babel-polyfill'
 import 'jquery-ujs'
-// import '@fortawesome/fontawesome-pro/js/all.js'
+import '@fortawesome/fontawesome-pro/js/all.js'
 import 'bootstrap'
 import './flash-alerts-animation'
 import LocalTime from "local-time"
