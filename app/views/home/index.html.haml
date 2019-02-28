@@ -23,7 +23,7 @@
         dropdown of Countries for you
         = country_select("user","")
   .col
-    .card
+    .card.mb-3
       .card-header jQuery UI Date Picker
       .card-body
         Simple
@@ -38,6 +38,7 @@
           SimpleForm helper
           = simple_form_for(User.new, url: user_update_profile_path) do |f|
             = date_input(f, :created_at)
+.row
   .col
     .card
       .card-header Simple Form
@@ -59,3 +60,9 @@
         %code jb
         gem ->
         = link_to "home.json", home_path(format: :json)
+  - if User.devise_modules.include?(:omniauthable)
+    .col
+      .card
+        .card-header Google Login
+        .card-body
+          = link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path

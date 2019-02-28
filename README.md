@@ -109,6 +109,10 @@ Below is a summary of what this template does. You can check all the features by
 * [meta_request](https://github.com/dejan/rails_panel) support for [RailsPanel](https://chrome.google.com/webstore/detail/railspanel/gjpfobpafnhjhbajcjgccbbdofdckggg) chrome extension
 * `.foreman` and `Procfile.dev` files to use `foreman start` in development
 
+### OPTIONAL (user prompts during execution)
+
+* Devise [OmniAuth Google OAuth2](https://github.com/zquestz/omniauth-google-oauth2) ([more info](https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview))
+  * Allows login via Google (in addition to normal devise database users)
 
 ## How does it work?
 

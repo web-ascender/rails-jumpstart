@@ -380,7 +380,7 @@ end
 
 def ask_user_options
   puts "\n ####  Questions / Options  ####"
-  @option_omniauth_google = yes? "Add Google OAuth2 (omniauth) support to Devise? [y/n] "
+  @option_omniauth_google = yes? "\n Add Google OAuth2 (omniauth) support to Devise? [y/n] "
 end
 
 def apply_template!
