@@ -35,7 +35,7 @@ def default_gemfile_gem_version(name)
 end
 
 def assert_minimum_rails_version
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   requirement = Gem::Requirement.new(RAILS_REQUIREMENT)
   rails_version = Gem::Version.new(Rails::VERSION::STRING)
   return if requirement.satisfied_by?(rails_version)
@@ -46,7 +46,7 @@ def assert_minimum_rails_version
 end
 
 def assert_postgresql
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   return if IO.read("Gemfile") =~ /^\s*gem ['"]pg['"]/
   fail Rails::Generators::Error,
        "This template requires PostgreSQL, "\
@@ -54,7 +54,7 @@ def assert_postgresql
 end
 
 def set_application_name
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   # Add Application Name to Config
   environment "config.application_name = Rails.application.class.parent_name"
 
@@ -63,7 +63,7 @@ def set_application_name
 end
 
 def setup_webpack
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   # rename app/javascript to app/webpacker
   inside "app" do
     run 'mv javascript webpacker'
@@ -77,10 +77,11 @@ def setup_webpack
 end
 
 def copy_app_templates
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   # https://github.com/excid3/jumpstart/blob/master/template.rb
   directory "app/views", force: true
   directory "app/controllers", force: true
+  template "credentials.yml.example.tt", "config/credentials.yml.example"
   # directory "config", force: true
   # directory "lib", force: true
 
@@ -94,7 +95,7 @@ def copy_app_templates
 end
 
 def setup_bootstrap
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   # Bootstrap v4 requires jQuery and the Popper.js lib
   # jquery-ujs   Rails jQuery helpers
   # jquery-ui    Useful for date pickers
@@ -125,7 +126,7 @@ environment.plugins.append(
 end
 
 def setup_expose_loader
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   run 'yarn add expose-loader'
   # expose-loader adds libraries to the window object (global scope)
   # this is useful for things like jQuery because many 3rd-party libs expect it as a global
@@ -147,7 +148,7 @@ environment.loaders.append("expose", {
 end
 
 def setup_devise_with_user_models
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   # Install Devise
   generate "devise:install"
 
@@ -178,7 +179,7 @@ def setup_devise_with_user_models
 end
 
 # def setup_name_of_person
-#   puts "\n**** TEMPLATE -> #{__method__}\n"
+#   puts "\n**** JUMPSTART -> #{__method__}\n"
 #   # https://github.com/basecamp/name_of_person
 #   insert_into_file 'app/models/user.rb', "  has_person_name\n", after: "class User < ApplicationRecord\n"
 # end
@@ -188,7 +189,7 @@ def setup_axios
 end
 
 def setup_simple_form
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   generate "simple_form:install --bootstrap"
   # tweak the generate simple_form_bootstrap.rb config
   # remove the individual field-level 'is-valid' CSS classes, to de-clutter
@@ -197,12 +198,12 @@ def setup_simple_form
 end
 
 def setup_local_time
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   run 'yarn add local-time'
 end
 
 def setup_cocoon
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   # Cocoon is stubborn, it requires jQuery AND the asset pipeline
   # so we have to do some gymnastics here with webpacker to load it
   # via an ERB JS loader so that the asset paths are pulled in correctly
@@ -218,13 +219,13 @@ environment.loaders.append('erb', erb)
 end
 
 def setup_select2
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   # select2 and a Bootstrap v4 theme
   run 'yarn add select2 @ttskch/select2-bootstrap4-theme'
 end
 
 def setup_fontawesome
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   puts "checking for FontAwesome Pro config (npm config ls)..."
   npm_config_data = run "npm config ls", capture: true
   pro_available = npm_config_data.include?('@fortawesome:registry')
@@ -239,7 +240,7 @@ def setup_fontawesome
 end
 
 def setup_datepicker
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   insert_into_file 'app/helpers/application_helper.rb', before: /^end/ do
     <<-RUBY
   def date_input(form, field)
@@ -250,37 +251,35 @@ def setup_datepicker
 end
 
 def setup_sidekiq
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   insert_into_file 'config/routes.rb', after: "Rails.application.routes.draw do\n" do
     <<-RUBY
 
   require 'sidekiq/web'
   mount Sidekiq::Web => '/admin/sidekiq'
+
     RUBY
   end
-
-  run 'bundle binstubs sidekiq'
 end
 
 def setup_annotate
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   generate 'annotate:install'
 
   # adjust annotate config
   # change annotation position from 'before' to 'after'
   gsub_file 'lib/tasks/auto_annotate_models.rake', /(?<==> ')(before)(?=')/, 'after'
   gsub_file 'lib/tasks/auto_annotate_models.rake', /'routes'\s*=>\s*'false'/, "'routes' => 'true'"
-
-  run 'bundle binstubs annotate'
+  gsub_file 'lib/tasks/auto_annotate_models.rake', /'classified_sort'\s*=>\s*'false'/, "'routes' => 'false'"
 end
 
 def setup_whenever
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   run "wheneverize ."
 end
 
 def setup_bullet
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   insert_into_file 'config/environments/development.rb', before: /^end/ do
     <<-RUBY
 
@@ -295,7 +294,7 @@ def setup_bullet
 end
 
 def setup_routes
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   route "root to: 'home#index'"
 
   insert_into_file 'config/routes.rb', after: "devise_for :users" do
@@ -314,28 +313,82 @@ def setup_routes
 end
 
 def setup_procfile
-  puts "\n**** TEMPLATE -> #{__method__}\n"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   template "foreman.tt", ".foreman"
   template "Procfile.dev.tt"
 end
 
 def fix_bundler_binstub
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   # https://github.com/rails/rails/issues/31193
   run 'bundle binstubs bundler --force'
 end
 
 def convert_erb_to_haml
-  puts "** TEMPLATE ** #{__method__}"
+  puts "\n**** JUMPSTART -> #{__method__}\n"
   run 'HAML_RAILS_DELETE_ERB=true HAML_RAILS_OVERWRITE_HAML=false rails haml:erb2haml'
 end
 
-def apply_template!
-  puts '*'*100
-  puts '  WEB ASCENDER RAILS JUMPSTART TEMPLATE'
-  puts '*'*100
+def setup_devise_omniauth_google
+  puts "\n**** JUMPSTART -> #{__method__}\n"
+  # https://github.com/plataformatec/devise/wiki/OmniAuth:-Overview
 
+  # add omniauth google gem
+  insert_into_file "Gemfile", "gem 'omniauth-google-oauth2'\n", before: /gem 'devise-i18n'/
+  run "bundle"
+
+  # update devise initializer
+  insert_into_file "config/initializers/devise.rb", before: /# config.omniauth/ do
+    <<-RUBY
+
+  config.omniauth :google_oauth2, Rails.application.credentials.dig(:google, :client_id), Rails.application.credentials.dig(:google, :client_secret) #, hd: 'webascender.com'
+
+    RUBY
+  end
+
+  # add migration for the 2 omniauth attributes on User model
+  generate :migration, "AddOmniauthToUsers provider:string uid:string"
+
+  # modify User model to know about omniauth & google_oauth2
+  insert_into_file "app/models/user.rb", before: /^end/ do
+    <<-RUBY
+
+  devise :omniauthable, omniauth_providers: [:google_oauth2]
+
+  def self.from_omniauth(auth)
+    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+      user.email = auth.info.email
+      user.password = Devise.friendly_token[0, 20]
+      user.first_name = auth.info.first_name
+      user.last_name = auth.info.last_name
+      # user.name = auth.info.name   # assuming the user model has a name
+      # user.image = auth.info.image # assuming the user model has an image
+      # If you are using confirmable and the provider(s) you use validate emails,
+      # uncomment the line below to skip the confirmation emails.
+      # user.skip_confirmation!
+    end
+  end
+    RUBY
+  end
+
+  # omniauth callbacks - controller
+  template "omniauth_callbacks_controller.rb.tt", "app/controllers/users/omniauth_callbacks_controller.rb", force: true
+  # omniauth callbacks - devise routes
+  gsub_file "config/routes.rb", "devise_for :users", "devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }"
+
+end
+
+def ask_user_options
+  puts "\n ####  Questions / Options  ####"
+  @option_omniauth_google = yes? "Add Google OAuth2 (omniauth) support to Devise? [y/n] "
+end
+
+def apply_template!
   # spring causes issues with our template, just disable it
   ENV["DISABLE_SPRING"] = "1"
+
+  print_banner
+  ask_user_options
 
   assert_minimum_rails_version
   assert_postgresql
@@ -344,10 +397,8 @@ def apply_template!
   template "Gemfile.tt", force: true
   template "ruby-version.tt", ".ruby-version", force: true
 
-  # ask_optional_options
-  # install_optional_gems
-
   after_bundle do
+    print_banner
     set_application_name
     setup_webpack
     copy_app_templates
@@ -367,7 +418,8 @@ def apply_template!
     setup_bullet
     setup_routes
     setup_procfile
-    fix_bundler_binstub
+    setup_devise_omniauth_google if @option_omniauth_google
+    # fix_bundler_binstub
 
     convert_erb_to_haml
 
@@ -379,15 +431,32 @@ def apply_template!
     # git add: "."
     # git commit: %Q{ -m 'Initial commit' }
 
-    puts "\n#{'*'*80}"
-    puts "\n  TEMPLATE FINISHED !\n\n"
-    puts "  start your app with foreman:"
-    puts "  $ foreman start\n\n"
-    puts "*"*80
-    terminal_notifier_installed = run "gem list -i '^terminal-notifier$'", capture: true
-    if terminal_notifier_installed.strip == 'true'
-      run "terminal-notifier -title 'WA Rails Jumpstart' -subtitle 'APP READY ✅' -message 'run it with foreman start' -sound 'default'"
-    end
+    print_success
+  end
+end
+
+def print_banner
+  puts File.read("#{__dir__}/banner.txt")
+end
+
+def print_success
+  print_banner
+  puts "\n POST-INSTALL NOTES:"
+  if @option_omniauth_google
+    puts "\n #### GOOGLE OAUTH2 SETUP REQUIRED! ####"
+    puts "\n 1. https://github.com/zquestz/omniauth-google-oauth2/blob/master/README.md#google-api-setup"
+    puts "\n 2. open your rails credentials file:"
+    puts "\tEDITOR='code --wait' bin/rails credentials:edit"
+    puts "\n 3. add your Google CLIENT_ID and CLIENT_SECRET (see config/credentials.yml.example)"
+    puts "\n 4. edit config/initializers/devise.rb to pass any extra omniauth options you might want e.g. ""hd: 'webascender.com'"" "
+  end
+  puts "\n #### RUN YOUR APP IN DEVELOPMENT ####"
+  puts "\n $ foreman start"
+  puts "-"*72
+  puts "Happy coding!"
+  terminal_notifier_installed = run "gem list -i '^terminal-notifier$'", capture: true, verbose: false
+  if terminal_notifier_installed.strip == 'true'
+    run "terminal-notifier -title 'WA Rails Jumpstart' -subtitle 'APP READY ✅' -message 'run it with foreman start' -sound 'default'", verbose: false
   end
 end
 
