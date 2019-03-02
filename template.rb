@@ -30,8 +30,8 @@ end
 
 def default_gemfile_gem_version(name)
   @original_gemfile ||= IO.read("Gemfile")
-  req = @original_gemfile[/gem\s+['"]#{name}['"]\s*(,[><~= \t\d\.\w'"]*)?.*$/, 1]
-  req && req.gsub("'", %(")).strip.sub(/^,\s*"/, ', "')
+  req = @original_gemfile[/gem\s+['"]#{name}['"]\s*(,.+).*$/, 1]
+  req && req.gsub('"', "'").strip.gsub(/^,\s*'/, ", '")
 end
 
 def assert_minimum_rails_version
@@ -56,7 +56,7 @@ end
 def set_application_name
   puts "\n**** JUMPSTART -> #{__method__}\n"
   # Add Application Name to Config
-  environment "config.application_name = Rails.application.class.parent_name"
+  environment "config.application_name = Rails.application.class.module_parent_name"
 
   # Announce where to change the application name in the future.
   puts "You can change application name inside: ./config/application.rb"
@@ -71,7 +71,7 @@ def setup_webpack
   directory "app/webpacker", force: true
   # change webpacker source path
   gsub_file 'config/webpacker.yml', /source_path: app\/javascript/, 'source_path: app/webpacker'
-  copy_file 'app/assets/javascripts/cable.js', 'app/webpacker/cable.js'
+  # copy_file 'app/assets/javascripts/cable.js', 'app/webpacker/cable.js'
   remove_dir 'app/assets/javascripts'
   remove_dir 'app/assets/stylesheets'
 end
@@ -270,7 +270,7 @@ def setup_annotate
   # change annotation position from 'before' to 'after'
   gsub_file 'lib/tasks/auto_annotate_models.rake', /(?<==> ')(before)(?=')/, 'after'
   gsub_file 'lib/tasks/auto_annotate_models.rake', /'routes'\s*=>\s*'false'/, "'routes' => 'true'"
-  gsub_file 'lib/tasks/auto_annotate_models.rake', /'classified_sort'\s*=>\s*'false'/, "'routes' => 'false'"
+  gsub_file 'lib/tasks/auto_annotate_models.rake', /'classified_sort'\s*=>\s*'true'/, "'classified_sort' => 'false'"
 end
 
 def setup_whenever
@@ -295,8 +295,7 @@ end
 
 def setup_routes
   puts "\n**** JUMPSTART -> #{__method__}\n"
-  route "root to: 'home#index'"
-
+  insert_into_file 'config/routes.rb', "  root to: 'home#index'\n", after: "Rails.application.routes.draw do\n"
   insert_into_file 'config/routes.rb', after: "devise_for :users" do
     <<-RUBY
 
