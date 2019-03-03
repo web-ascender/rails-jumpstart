@@ -215,7 +215,7 @@ const erb =  require('./loaders/erb')
 environment.loaders.append('erb', erb)
     JS
   end
-  insert_into_file 'config/webpacker.yml', "    - .erb\n", after: "extensions:\n"
+  insert_into_file 'config/webpacker.yml', "    - .erb\n", after: "  extensions:\n"
 end
 
 def setup_select2
@@ -403,7 +403,6 @@ def apply_template!
     copy_app_templates
     setup_bootstrap
     setup_devise_with_user_models
-    # setup_name_of_person
     setup_simple_form
     setup_axios
     setup_local_time
@@ -423,8 +422,8 @@ def apply_template!
     convert_erb_to_haml
 
     # DB create and migrate
-    rails_command "db:create"
-    rails_command "db:migrate"
+    # rails_command "db:create"
+    # rails_command "db:migrate"
 
     # git :init
     # git add: "."
@@ -442,14 +441,16 @@ def print_success
   print_banner
   puts "\n POST-INSTALL NOTES:"
   if @option_omniauth_google
-    puts "\n #### GOOGLE OAUTH2 SETUP REQUIRED! ####"
+    puts "\n#{'#'*72}\n GOOGLE OAUTH2 SETUP REQUIRED! \n#{'#'*72}"
     puts "\n 1. https://github.com/zquestz/omniauth-google-oauth2/blob/master/README.md#google-api-setup"
     puts "\n 2. open your rails credentials file:"
     puts "\tEDITOR='code --wait' bin/rails credentials:edit"
     puts "\n 3. add your Google CLIENT_ID and CLIENT_SECRET (see config/credentials.yml.example)"
     puts "\n 4. edit config/initializers/devise.rb to pass any extra omniauth options you might want e.g. ""hd: 'webascender.com'"" "
   end
-  puts "\n #### RUN YOUR APP IN DEVELOPMENT ####"
+  puts "\n#{'#'*72}\n CREATE and MIGRATE your database \n#{'#'*72}"
+  puts "\n $ bin/rails db:create db:migrate"
+  puts "\n#{'#'*72}\n Start your app in DEVELOPMENT with Foreman \n#{'#'*72}"
   puts "\n $ foreman start"
   puts "-"*72
   puts "Happy coding!"
