@@ -10,9 +10,9 @@ Jumpstart is a Rails template, so you pass it in as an option when creating a ne
 
 You'll need the following installed to run the template successfully:
 
-* **Ruby 2.5+**  (`rbenv` recommended [Install rbenv](https://github.com/rbenv/rbenv))
+* **Ruby 2.6+**  (`rbenv` recommended [Install rbenv](https://github.com/rbenv/rbenv))
 * **bundler**  (`gem install bundler`)
-* **Rails 5.2.x** (`gem install rails`)
+* **Rails 6.0.0.rc1** (`gem install rails`)
 * **Node.js** LTS (`nvm` recommended [Install nvm](https://github.com/creationix/nvm))
 * **Yarn** (`brew install yarn` or [Install Yarn](https://yarnpkg.com/en/docs/install))
 * **PostgreSQL** (`Postgres.app` recommended on OSX https://postgresapp.com)
