@@ -7,23 +7,23 @@ gem 'rails', '~> <%= Rails.version %>'
 gem 'pg'<%= default_gemfile_gem_version('pg') %>
 gem 'puma'<%= default_gemfile_gem_version('puma') %>
 gem 'webpacker'<%= default_gemfile_gem_version('webpacker') %>
-
 gem 'bootsnap'<%= default_gemfile_gem_version('bootsnap') %>
 
 gem 'active_link_to'
 gem 'cocoon'
 gem 'country_select'
-gem 'haml-rails'
-# gem 'hamlit-rails'
+gem 'hamlit-rails'
 gem 'devise'
 gem 'devise-i18n'
 gem 'devise-bootstrap-views'
 gem 'http'
 gem 'jb'
 gem 'local_time'
-# gem 'name_of_person'
+gem 'sassc'
+gem 'sassc-rails'
 gem 'sidekiq'
 gem 'simple_form'
+# gem 'turbolinks', '~> 5'
 gem 'whenever', require: false
 
 # Use Redis adapter to run Action Cable in production
@@ -40,6 +40,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'html2haml' # only needed for initial erb -> haml conversion, can be removed after that
   gem 'annotate' #, '~> 2.7'
   gem 'awesome_print'
   gem 'better_errors' #, '~> 2.5'
@@ -56,6 +57,8 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara'<%= default_gemfile_gem_version('capybara') %>
   gem 'selenium-webdriver'
+  # Easy installation and use of web drivers to run system tests with browsers
+  gem 'webdrivers'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  # gem 'chromedriver-helper'
 end

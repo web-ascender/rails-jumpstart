@@ -80,18 +80,9 @@ def copy_app_templates
   puts "\n**** JUMPSTART -> #{__method__}\n"
   # https://github.com/excid3/jumpstart/blob/master/template.rb
   directory "app/views", force: true
+  remove_file "app/views/layouts/application.html.erb"
   directory "app/controllers", force: true
   template "credentials.yml.example.tt", "config/credentials.yml.example"
-  # directory "config", force: true
-  # directory "lib", force: true
-
-  # https://github.com/damienlethiec/modern-rails-template
-  # template "Gemfile.tt", force: true
-  # template 'README.md.tt', force: true
-  # apply 'config/template.rb'
-  # apply 'app/template.rb'
-  # copy_file 'Procfile'
-  # copy_file 'Procfile.dev'
 end
 
 def setup_bootstrap
@@ -317,15 +308,15 @@ def setup_procfile
   template "Procfile.dev.tt"
 end
 
-def fix_bundler_binstub
-  puts "\n**** JUMPSTART -> #{__method__}\n"
-  # https://github.com/rails/rails/issues/31193
-  run 'bundle binstubs bundler --force'
-end
+# def fix_bundler_binstub
+#   puts "\n**** JUMPSTART -> #{__method__}\n"
+#   # https://github.com/rails/rails/issues/31193
+#   run 'bundle binstubs bundler --force'
+# end
 
 def convert_erb_to_haml
   puts "\n**** JUMPSTART -> #{__method__}\n"
-  run 'HAML_RAILS_DELETE_ERB=true HAML_RAILS_OVERWRITE_HAML=false rails haml:erb2haml'
+  run 'HAML_RAILS_DELETE_ERB=true HAML_RAILS_OVERWRITE_HAML=false bundle exec rails hamlit:erb2haml'
 end
 
 def setup_devise_omniauth_google
@@ -394,13 +385,14 @@ def apply_template!
   add_template_repository_to_source_path
 
   template "Gemfile.tt", force: true
-  template "ruby-version.tt", ".ruby-version", force: true
 
   after_bundle do
     print_banner
     set_application_name
     setup_webpack
+
     copy_app_templates
+
     setup_bootstrap
     setup_devise_with_user_models
     setup_simple_form
@@ -417,17 +409,8 @@ def apply_template!
     setup_routes
     setup_procfile
     setup_devise_omniauth_google if @option_omniauth_google
-    # fix_bundler_binstub
 
     convert_erb_to_haml
-
-    # DB create and migrate
-    # rails_command "db:create"
-    # rails_command "db:migrate"
-
-    # git :init
-    # git add: "."
-    # git commit: %Q{ -m 'Initial commit' }
 
     print_success
   end
