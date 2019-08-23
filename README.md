@@ -12,7 +12,7 @@ You'll need the following installed to run the template successfully:
 
 * **Ruby 2.6+**  (`rbenv` recommended [Install rbenv](https://github.com/rbenv/rbenv))
 * **bundler**  (`gem install bundler`)
-* **Rails 6.0.0.rc1** (`gem install rails`)
+* **Rails 6.0.0** (`gem install rails`)
 * **Node.js** LTS (`nvm` recommended [Install nvm](https://github.com/creationix/nvm))
 * **Yarn** (`brew install yarn` or [Install Yarn](https://yarnpkg.com/en/docs/install))
 * **PostgreSQL** (`Postgres.app` recommended on OSX https://postgresapp.com)
