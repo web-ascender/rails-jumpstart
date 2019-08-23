@@ -1,7 +1,7 @@
 require "fileutils"
 require "shellwords"
 
-RAILS_REQUIREMENT = ">= 5.2.2".freeze
+RAILS_REQUIREMENT = ">= 6.0.0".freeze
 
 def add_template_repository_to_source_path
   # Copied from: https://github.com/mattbrictson/rails-template
