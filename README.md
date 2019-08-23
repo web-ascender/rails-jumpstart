@@ -58,8 +58,8 @@ Below is a summary of what this template does. You can check all the features by
   * renames the default `app/javascript` folder to `app/webpacker`
   * configures default pack in `app/webpacker/packs/application.js`
   * sprockets (asset pipeline) is left intact to serve images only
-* [haml](https://github.com/indirect/haml-rails) for view templates
-* [boostrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/) (v4) UI framework
+* [haml / hamlit](https://github.com/mfung/hamlit-rails) for view templates
+* [bootstrap](https://getbootstrap.com/docs/4.0/getting-started/introduction/) (v4) UI framework
   * including jQuery and Popper.js dependencies
 * `$`, `jQuery`, and `jquery` provided as window globals by default (for 3rd party compatibility)
   * Provide plugin and expose-loader
@@ -81,7 +81,6 @@ Below is a summary of what this template does. You can check all the features by
 * [cocoon](https://github.com/nathanvda/cocoon) form helpers for dynamic nested forms
 * [local_time](https://github.com/basecamp/local_time) for easy formatting of user-facing timestamps
 * [active_link_to](https://github.com/comfy/active_link_to) link helpers
-* [name_of_person](https://github.com/basecamp/name_of_person) helper methods for names of people
 
 ### JavaScript Libraries
 
