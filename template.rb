@@ -1,5 +1,6 @@
 require "fileutils"
 require "shellwords"
+require 'open-uri'
 
 RAILS_REQUIREMENT = ">= 6.0.0".freeze
 
@@ -417,7 +418,12 @@ def apply_template!
 end
 
 def print_banner
-  puts File.read("#{__dir__}/banner.txt")
+  puts "~"*100
+  puts "\n"*2
+  puts "\tJUMPSTART!\n"
+  puts "\thttps://github.com/web-ascender/rails-jumpstart"
+  puts "\n"*2
+  puts "~"*100
 end
 
 def print_success
