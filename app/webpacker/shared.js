@@ -12,6 +12,13 @@ import './datepicker'
 // import './activefields.js.erb'
 import axios from 'axios'
 
+// axios defaults
 axios.defaults.headers.common['Accept'] = 'application/json';
+const tokenDom = document.querySelector("meta[name=csrf-token]")
+if (tokenDom) {
+  const csrfToken = tokenDom.content
+  axios.defaults.headers.common['X-CSRF-Token'] = csrfToken
+}
+
 LocalTime.start()
 initSelect2()
