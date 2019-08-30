@@ -10,6 +10,7 @@ gem 'webpacker'<%= default_gemfile_gem_version('webpacker') %>
 gem 'bootsnap'<%= default_gemfile_gem_version('bootsnap') %>
 
 gem 'active_link_to'
+gem 'bootstrap-email'
 gem 'cocoon'
 gem 'country_select'
 gem 'hamlit-rails'

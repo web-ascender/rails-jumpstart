@@ -19,7 +19,9 @@
               = link_to 'Item Three', '#', class: 'dropdown-item'
         - if user_signed_in?
           %li.nav-item.dropdown
-            = link_to current_user.email, '#', class: "nav-link dropdown-toggle", id: 'current-user-dropdown', role: :button, 'data-toggle': :dropdown, 'aria-haspopup': true, 'aria-expanded': false
+            = link_to '#', class: "nav-link dropdown-toggle", id: 'current-user-dropdown', role: :button, 'data-toggle': :dropdown, 'aria-haspopup': true, 'aria-expanded': false do
+              %i.fas.fa-user-circle.mr-1
+              = current_user.email
             .dropdown-menu.dropdown-menu-right{ 'aria-labelledby': 'current-user-dropdown' }
               - unless current_user.try(:provider).present?
                 = active_link_to 'My Account', edit_user_registration_path, class: 'dropdown-item'

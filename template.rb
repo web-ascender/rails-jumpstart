@@ -120,6 +120,13 @@ environment.plugins.append(
   gsub_file 'config/webpacker.yml', /resolved_paths: \[\]/, "resolved_paths: ['node_modules/jquery/dist']"
 
   setup_expose_loader
+
+  # Bootstrap Email
+  append_to_file 'config/initializers/assets.rb' do
+    <<-RUBY
+    Rails.application.config.assets.precompile += %w[ application-mailer.scss ]
+    RUBY
+  end
 end
 
 def setup_expose_loader
@@ -155,6 +162,7 @@ def setup_devise_with_user_models
 
   # ActionMailer config
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  config.action_mailer.default_options = { from: 'no-reply@localhost.dev' }
     RUBY
   end
 
@@ -177,6 +185,10 @@ def setup_devise_with_user_models
   # https://github.com/hisea/devise-bootstrap-views
   generate "devise:views:bootstrap_templates"
 
+  # Point devise from: address at action_mailer config
+  gsub_file 'config/initializers/devise.rb', "config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'", "config.mailer_sender = Rails.configuration.action_mailer&.default_options.dig(:from) || 'please-change-me-at-config-initializers-devise@example.com'"
+
+  # Use special view layouts for devise controllers
   append_to_file 'config/initializers/devise.rb' do
     <<-RUBY
 Rails.application.config.to_prepare do

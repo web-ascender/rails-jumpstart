@@ -1,0 +1,10 @@
+!!! Strict
+%html
+  %head
+    %meta{:content => "text/html; charset=utf-8", "http-equiv" => "Content-Type"}
+    = stylesheet_link_tag "application-mailer", media: "all"
+  %body.bg-light
+    .container
+      .card.my-4.w-100
+        .card-body
+          = yield
