@@ -162,12 +162,15 @@ def setup_devise_with_user_models
   generate :devise, "User",
            "first_name",
            "last_name",
+           "time_zone",
+           "phone",
            "superuser:boolean"
 
-  # Set 'superuser' default to false in user migration
+  # Change some column defaults in the devise/user migration
   in_root do
     migration = Dir.glob("db/migrate/*").max_by{ |f| File.mtime(f) }
     gsub_file migration, /:superuser/, ":superuser, default: false"
+    gsub_file migration, /:time_zone/, ":time_zone, default: 'UTC', null: false"
   end
 
   # Generate Devise Bootstrap Views

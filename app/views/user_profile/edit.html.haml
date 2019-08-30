@@ -1,6 +1,24 @@
 %h1 My Profile
 = simple_form_for(@user, url: user_update_profile_path) do |f|
-  = f.input :email, readonly: @user.try(:provider).present?, hint: @user.try(:provider).present? ? "determined by #{@user.provider}" : ""
   = f.input :first_name
   = f.input :last_name
-  = f.submit 'Update', class: 'btn btn-primary'
+  = f.input :email
+  = f.input :phone
+  = f.input :time_zone
+
+  = f.label 'Password'
+  .form-control-plaintext
+    %a{href: "#", onclick: 'togglePasswordFields(this);'} Change Password
+  #password_fields.d-none
+    = f.input :current_password, label: 'Current Password', hint: 'your current password is required before you can set a new password'
+    = f.input :password, label: 'New Password'
+    = f.input :password_confirmation, label: 'New Password Confirmation'
+
+  .mt-3
+    = f.submit 'Update', class: 'btn btn-primary'
+
+:javascript
+  function togglePasswordFields(e) {
+    e.classList.toggle('d-none');
+    document.getElementById('password_fields').classList.toggle('d-none');
+  }
