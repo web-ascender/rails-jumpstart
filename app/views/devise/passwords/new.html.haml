@@ -1,0 +1,8 @@
+%h2.my-2.text-center= t('.forgot_your_password')
+= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+  = bootstrap_devise_error_messages!
+  .form-inputs
+    = f.input :email, autofocus: true, input_html: { autocomplete: "email" }
+  .row.align-items-center
+    .col= f.button :submit, t('.send_me_reset_password_instructions'), class: 'btn btn-primary'
+    .col-auto= render "devise/shared/links"

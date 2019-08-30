@@ -1,4 +1,4 @@
-// import 'babel-polyfill'
+import './images'
 import 'jquery-ujs'
 import '@fortawesome/fontawesome-pro/js/all.js'
 import 'bootstrap'
@@ -7,9 +7,6 @@ import LocalTime from "local-time"
 import './cocoon.js.erb'
 import initSelect2 from './init-select2'
 import './datepicker'
-// import './file_input'
-// import './ckeditor'
-// import './activefields.js.erb'
 import axios from 'axios'
 
 // axios defaults

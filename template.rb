@@ -86,6 +86,11 @@ def copy_app_templates
   template "credentials.yml.example.tt", "config/credentials.yml.example"
 end
 
+def copy_devise_templates
+  puts "\n**** JUMPSTART -> #{__method__}\n"
+  directory "app/views/devise", force: true
+end
+
 def setup_bootstrap
   puts "\n**** JUMPSTART -> #{__method__}\n"
   # Bootstrap v4 requires jQuery and the Popper.js lib
@@ -168,6 +173,18 @@ def setup_devise_with_user_models
   # Generate Devise Bootstrap Views
   # https://github.com/hisea/devise-bootstrap-views
   generate "devise:views:bootstrap_templates"
+
+  append_to_file 'config/initializers/devise.rb' do
+    <<-RUBY
+Rails.application.config.to_prepare do
+  Devise::RegistrationsController.layout proc { |controller| user_signed_in? ? 'application' : 'devise_anonymous' }
+  Devise::SessionsController.layout 'devise_anonymous'
+  Devise::ConfirmationsController.layout 'devise_anonymous'
+  Devise::UnlocksController.layout 'devise_anonymous'
+  Devise::PasswordsController.layout 'devise_anonymous'
+end
+      RUBY
+    end
 end
 
 # def setup_name_of_person
@@ -413,6 +430,8 @@ def apply_template!
     setup_devise_omniauth_google if @option_omniauth_google
 
     convert_erb_to_haml
+
+    copy_devise_templates
 
     print_success
   end

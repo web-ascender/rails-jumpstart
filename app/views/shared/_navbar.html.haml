@@ -1,6 +1,7 @@
 %nav.navbar.navbar-expand-md.navbar-light.bg-light
   .container-fluid
-    = link_to 'APP', root_path, class: 'navbar-brand'
+    = link_to root_path, class: 'navbar-brand' do
+      = image_tag asset_pack_path('media/images/logo-navbar.png'), class: 'navbar-brand-image'
     %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", :type => "button"}
       %span.navbar-toggler-icon
     #navbarSupportedContent.collapse.navbar-collapse

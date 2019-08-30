@@ -12,15 +12,15 @@
     = stylesheet_pack_tag 'application'
     = javascript_pack_tag 'application'
 
-  %body
-    = render partial: 'shared/navbar'
-
-    - if content_for?(:subnav)
-      %nav.subnav.navbar.navbar-expand-md.navbar-dark.bg-dark
-        .container-fluid= yield :subnav
-
+  %body.devise
     .container-fluid.mt-3.mb-5
-      = yield
+      .auth-container.mt-5
+        .card
+          .card-body
+            .auth-header
+              = image_tag asset_pack_path 'media/images/logo-login.png'
+            %hr
+            = yield
 
     - if flash[:alert]
       .invisible

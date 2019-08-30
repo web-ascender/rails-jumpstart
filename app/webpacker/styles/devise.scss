@@ -1,0 +1,28 @@
+.devise {
+  background-color: #f5f5f5;
+
+  .auth-container {
+    display: block;
+    max-width: 500px;
+    margin: 15px auto;
+  }
+
+  .auth-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 160px;
+      margin: 0 1em;
+    }
+
+    @include media-breakpoint-down(sm) {
+      flex-direction: column;
+
+      img {
+        margin: 1em 0;
+      }
+    }
+  }
+}
