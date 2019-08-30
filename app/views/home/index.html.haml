@@ -9,12 +9,29 @@
       .card-header Local Time
       .card-body
         The
-        %code local-time
-        is
-        = local_time(Time.now)
+        %strong local-time
+        gem says your local browser time is
+        %code.d-block
+          = local_time(Time.now)
         %br
         This page was rendered
         %code= local_time_ago(Time.now)
+  .col
+    .card
+      .card-header Server Time
+      .card-body
+        - if user_signed_in?
+          Your user profile says your local timezone is
+          %code.d-block
+            = current_user.time_zone
+          and your local time is:
+          %code.d-block
+            = Time.current.to_s(:long)
+        - else
+          Anonymous user server time is:
+          %code.d-block
+            = Time.current
+
   .col
     .card
       .card-header select2
@@ -52,14 +69,14 @@
           Login and then visit
           %strong My Profile
           from the user menu (upper-right)
-  -# .col
-  -#   .card
-  -#     .card-header JB / JSON Views
-  -#     .card-body
-  -#       JSON views courtesy of the
-  -#       %code jb
-  -#       gem ->
-  -#       = link_to "home.json", home_path(format: :json)
+  .col
+    .card
+      .card-header JB / JSON Views
+      .card-body
+        JSON views courtesy of the
+        %code jb
+        gem ->
+        = link_to "home.json", home_path(format: :json)
   - if User.devise_modules.include?(:omniauthable)
     .col
       .card
