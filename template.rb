@@ -228,6 +228,7 @@ def setup_fontawesome
     puts "could not detect PRO, falling back to FontAwesome FREE"
     puts "read more here:\n https://fontawesome.com/how-to-use/on-the-web/setup/using-package-managers"
     run 'yarn add @fortawesome/fontawesome-free'
+    gsub_file "app/webpacker/shared.js", "fontawesome-pro", "fontawesome-free"
   end
 end
 
